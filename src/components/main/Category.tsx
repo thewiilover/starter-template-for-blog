@@ -1,5 +1,3 @@
-import { categoryList } from "@/src/custom/category";
-
 export default function Category() {
   return (
     <div className="w-full mt-3 p-5">
@@ -12,3 +10,5 @@ export default function Category() {
     </div>
   );
 }
+
+const categoryList = ["a", "b", "c"];
