@@ -1,12 +1,14 @@
 import Link from "next/link";
 import { PostsProps } from "@/app/types";
+import useCategory from "@/src/store/categoryStore";
 
 export default function PostsList({ posts }: { posts: PostsProps[] }) {
+  const { currentCategory } = useCategory();
   return (
     <>
       {posts.length === 0 ? (
         <div className="h-[100vh] flex justify-center items-center">
-          No Result
+          {currentCategory === "All" ? "Write your first post!" : "No Result"}
         </div>
       ) : (
         posts.map((data: any, index: number) => (

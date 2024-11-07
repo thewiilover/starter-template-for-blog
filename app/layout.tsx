@@ -2,9 +2,13 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navigation from "../src/components/global/Navigation";
 import Footer from "../src/components/global/Footer";
+import { blogTitle } from "@/console/navigation";
 
 export const metadata: Metadata = {
-  title: "Next Blog",
+  title: blogTitle,
+  icons: {
+    icon: "/logo-icon.png",
+  },
 };
 
 export default function RootLayout({

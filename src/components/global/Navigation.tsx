@@ -9,6 +9,7 @@ import usePageNumber from "@/src/store/pageNumberStore";
 
 import MenuIcon from "../../assets/menu.svg";
 import CloseIcon from "../../assets/close.svg";
+import { blogTitle } from "@/console/navigation";
 
 export default function Navigation() {
   const pathname = usePathname();
@@ -26,7 +27,7 @@ export default function Navigation() {
           changeCurrentPage(1);
         }}
       >
-        NEXT BLOG
+        {blogTitle}
       </Link>
       {pathname === "/" && (
         <div>

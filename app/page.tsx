@@ -10,25 +10,24 @@ import PostsList from "@/src/components/main/PostsList";
 
 import useMenu from "@/src/store/menuStore";
 import useCategory from "@/src/store/categoryStore";
+import usePageNumber from "@/src/store/pageNumberStore";
 
 import { getListItem } from "@/src/utils/useRequest";
 import { PostsProps } from "./types";
 import { getTotalPageNum, paginateItems } from "@/src/utils/usePagination";
-import usePageNumber from "@/src/store/pageNumberStore";
 
 export default function Home() {
   const router = useRouter();
-  const [postsList, setPostsList] = useState<PostsProps[] | null>(null);
+  const [postsList, setPostsList] = useState<PostsProps[] | null>([]);
   const [pageNumbers, setPageNumbers] = useState<number[]>([]);
-  // const [currentPage, setCurrentPage] = useState<number>(1);
 
   const { isMobileMenuVisible } = useMenu();
   const { currentCategory } = useCategory();
   const { currentPage, changeCurrentPage } = usePageNumber();
 
-  const itemsPerPage = 6;
-
   const fetchList = async (category: string) => {
+    const itemsPerPage = 6;
+
     try {
       const data = await getListItem(category);
       if (data) {
