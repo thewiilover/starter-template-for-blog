@@ -1,19 +1,19 @@
 "use client";
 
-import { ArticlesProps } from "@/app/types";
+import { PostsProps } from "@/app/types";
 import Profile from "@/src/components/main/Profile";
 import MarkDownPost from "@/src/post/MarkDownPost";
-import { getArticle } from "@/src/utils/useRequest";
+import { getPost } from "@/src/utils/useRequest";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
-export default function Article() {
+export default function Post() {
   const { id } = useParams();
-  const [data, setData] = useState<ArticlesProps | null>(null);
+  const [data, setData] = useState<PostsProps | null>(null);
 
   const fetchList = async (id: number) => {
     try {
-      const data = await getArticle(id);
+      const data = await getPost(id);
       setData(data[0]);
     } catch (error) {
       console.error("Failed to fetch data:", error);

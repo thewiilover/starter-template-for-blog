@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { NextRequest } from "next/server";
-import { ArticlesProps } from "../../types";
+import { PostsProps } from "../../types";
 
 const postsDirectory = "__posts";
 
@@ -18,7 +18,7 @@ export async function GET(req: NextRequest) {
 
     const matterResult = matter(fileContents);
 
-    const blogPost: ArticlesProps = {
+    const blogPost: PostsProps = {
       id: matterResult.data.id,
       title: matterResult.data.title,
       preview: matterResult.data.preview,

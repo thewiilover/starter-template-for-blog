@@ -12,8 +12,8 @@ export async function getListItem(allPostsData: string) {
   return result;
 }
 
-export async function getArticle(id: number) {
-  const res = await fetch(`http://localhost:3000/api/article?id=${id}`, {
+export async function getPost(id: number) {
+  const res = await fetch(`http://localhost:3000/api/post?id=${id}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
