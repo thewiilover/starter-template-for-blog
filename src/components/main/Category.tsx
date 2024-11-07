@@ -1,4 +1,4 @@
-import { categoryList } from "@/custom/category";
+import { categoryList } from "@/src/custom/category";
 
 export default function Category() {
   return (

@@ -1,23 +1,45 @@
+"use client";
+
+import { ArticlesProps } from "@/app/types";
+import { getListItem } from "@/src/utils/useRequest";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function ArticleList() {
+  const [articles, setArticles] = useState<ArticlesProps[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState("All");
+
+  useEffect(() => {
+    const fetchList = async (category: string) => {
+      try {
+        const data = await getListItem(category);
+        setArticles(data);
+      } catch (error) {
+        console.error("Failed to fetch data:", error);
+      }
+    };
+
+    fetchList(selectedCategory);
+  }, [selectedCategory]);
+
   return (
     <>
-      {dummydata.map((data: any, index: number) => (
-        <Link href={`/article/${data.id}`}>
-          <div
-            key={index}
-            className="w-[100%] h-[220px] flex flex-col justify-between pl-5 pr-12 py-7 border-b"
-          >
-            <div>
-              <div className="text-blue-500 text-sm">{data.category}</div>
-              <div className="text-3xl my-2 font-bold">{data.title}</div>
-              <div>{data.preview}</div>
-            </div>
-            <div className="text-xs text-zinc-400">{data.date}</div>
-          </div>{" "}
-        </Link>
-      ))}
+      {articles.length === 0 ? (
+        <div>loading</div>
+      ) : (
+        articles.map((data: any, index: number) => (
+          <Link key={index} href={`/article/${data.id}`}>
+            <div className="w-[100%] h-[220px] flex flex-col justify-between pl-5 pr-12 py-7 border-b">
+              <div>
+                <div className="text-blue-500 text-sm">{data.category}</div>
+                <div className="text-3xl my-2 font-bold">{data.title}</div>
+                <div>{data.preview}</div>
+              </div>
+              <div className="text-xs text-zinc-400">{data.date}</div>
+            </div>{" "}
+          </Link>
+        ))
+      )}
     </>
   );
 }

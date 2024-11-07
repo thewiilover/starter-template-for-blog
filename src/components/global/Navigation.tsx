@@ -1,4 +1,4 @@
-import { blogTitle } from "@/custom/navigation";
+import { blogTitle } from "@/src/custom/navigation";
 import Link from "next/link";
 
 export default function Navigation() {

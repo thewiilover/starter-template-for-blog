@@ -1,6 +1,6 @@
-import ArticleList from "@/components/main/ArticleList";
-import Category from "../components/main/Category";
-import Profile from "../components/main/Profile";
+import ArticleList from "@/src/components/main/ArticleList";
+import Category from "../src/components/main/Category";
+import Profile from "../src/components/main/Profile";
 
 export default function Home() {
   return (
