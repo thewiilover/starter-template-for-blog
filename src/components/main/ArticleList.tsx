@@ -1,16 +1,16 @@
 import { PostsProps } from "@/app/types";
 import Link from "next/link";
 
-export default function ArticleList({ articles }: { articles: PostsProps[] }) {
+export default function ArticleList({ posts }: { posts: PostsProps[] }) {
   return (
     <>
-      {articles.length === 0 ? (
+      {posts.length === 0 ? (
         <div className="h-[100vh] flex justify-center items-center">
           No Result
         </div>
       ) : (
-        articles.map((data: any, index: number) => (
-          <Link key={index} href={`/article/${data.id}`}>
+        posts.map((data: any, index: number) => (
+          <Link key={index} href={`/posts/${data.id}`}>
             <div className="w-[100%] h-[220px] flex flex-col justify-between pl-5 pr-12 py-7 border-b">
               <div>
                 <div className="text-blue-500 text-sm">{data.category}</div>

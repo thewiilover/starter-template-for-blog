@@ -17,7 +17,7 @@ import { getTotalPageNum, paginateItems } from "@/src/utils/usePagination";
 
 export default function Home() {
   const router = useRouter();
-  const [articlesList, setArticlesList] = useState<PostsProps[] | null>(null);
+  const [postsList, setPostsList] = useState<PostsProps[] | null>(null);
   const [pageNumbers, setPageNumbers] = useState<number[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const { currentCategory } = useCategory();
@@ -29,7 +29,7 @@ export default function Home() {
     try {
       const data = await getListItem(category);
       if (data) {
-        setArticlesList(paginateItems(data, itemsPerPage, currentPage));
+        setPostsList(paginateItems(data, itemsPerPage, currentPage));
         setPageNumbers(getTotalPageNum(data, itemsPerPage));
       }
     } catch (error) {
@@ -63,12 +63,12 @@ export default function Home() {
         )}
         <div
           className={`w-full ${
-            articlesList && articlesList.length > 3 ? "" : "h-[100vh]"
+            postsList && postsList.length > 3 ? "" : "h-[100vh]"
           } lg:w-[1024px] flex justify-between`}
         >
-          {articlesList ? (
+          {postsList ? (
             <div className="w-full lg:w-[680px]">
-              <ArticleList articles={articlesList} />
+              <ArticleList posts={postsList} />
             </div>
           ) : (
             <div className="w-full h-[100vh] flex justify-center items-center">
