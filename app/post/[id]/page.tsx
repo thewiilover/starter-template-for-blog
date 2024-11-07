@@ -36,8 +36,10 @@ export default function Post() {
           LOADING
         </div>
       )}
-      <div className="border-t py-[70px]">
-        <Profile />
+      <div className="border-t w-full py-[70px] flex justify-center">
+        <div className="w-full lg:w-[50%]">
+          <Profile />
+        </div>
       </div>
     </div>
   );

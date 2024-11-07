@@ -1,7 +1,7 @@
 import { PostsProps } from "@/app/types";
 import Link from "next/link";
 
-export default function ArticleList({ posts }: { posts: PostsProps[] }) {
+export default function PostsList({ posts }: { posts: PostsProps[] }) {
   return (
     <>
       {posts.length === 0 ? (
@@ -10,7 +10,7 @@ export default function ArticleList({ posts }: { posts: PostsProps[] }) {
         </div>
       ) : (
         posts.map((data: any, index: number) => (
-          <Link key={index} href={`/posts/${data.id}`}>
+          <Link key={index} href={`/post/${data.id}`}>
             <div className="w-[100%] h-[220px] flex flex-col justify-between pl-5 pr-12 py-7 border-b">
               <div>
                 <div className="text-blue-500 text-sm">{data.category}</div>

@@ -3,7 +3,7 @@ import useCategory from "@/src/store/categoryStore";
 export default function Category() {
   const { changeCurrentCategory } = useCategory();
   return (
-    <div className="w-full mt-3 p-10 lg:p-5">
+    <div className="w-full mt-3 px-10 lg:p-3">
       <div className="font-bold text">Category</div>
       {categoryList.map((categoryName, index) => (
         <div

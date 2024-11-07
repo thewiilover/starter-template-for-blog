@@ -3,10 +3,10 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import ArticleList from "@/src/components/main/ArticleList";
 import Category from "../src/components/main/Category";
 import Profile from "../src/components/global/Profile";
 import MobileMenu from "@/src/components/mobile/MobileMenu";
+import PostsList from "@/src/components/main/PostsList";
 
 import useMenu from "@/src/store/menuStore";
 import useCategory from "@/src/store/categoryStore";
@@ -68,7 +68,7 @@ export default function Home() {
         >
           {postsList ? (
             <div className="w-full lg:w-[680px]">
-              <ArticleList posts={postsList} />
+              <PostsList posts={postsList} />
             </div>
           ) : (
             <div className="w-full h-[100vh] flex justify-center items-center">
