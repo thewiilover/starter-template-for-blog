@@ -6,7 +6,7 @@ export default function ArticleList({ articles }: { articles: PostsProps[] }) {
     <>
       {articles.length === 0 ? (
         <div className="h-[100vh] flex justify-center items-center pb-[85px]">
-          LOADING
+          No Result
         </div>
       ) : (
         articles.map((data: any, index: number) => (

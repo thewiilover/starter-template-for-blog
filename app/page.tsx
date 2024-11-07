@@ -5,15 +5,15 @@ import Category from "../src/components/main/Category";
 import Profile from "../src/components/main/Profile";
 import MobileMenu from "@/src/components/mobile/MobileMenu";
 import useMenu from "@/src/store/menuStore";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getListItem } from "@/src/utils/useRequest";
 import { PostsProps } from "./types";
 import useCategory from "@/src/store/categoryStore";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
   const { isMobileMenuVisible } = useMenu();
-  const [articlesList, setArticlesList] = useState<PostsProps[]>([]);
+  const [articlesList, setArticlesList] = useState<PostsProps[] | null>(null);
   const { currentCategory } = useCategory();
   const router = useRouter();
 
@@ -51,12 +51,18 @@ export default function Home() {
       )}
       <div
         className={`w-full ${
-          articlesList.length > 3 ? "" : "h-[100vh]"
+          articlesList && articlesList.length > 3 ? "" : "h-[100vh]"
         } lg:w-[1024px] flex justify-between`}
       >
-        <div className="w-full lg:w-[680px] pb-[100px]">
-          <ArticleList articles={articlesList} />
-        </div>
+        {articlesList ? (
+          <div className="w-full lg:w-[680px] pb-[100px]">
+            <ArticleList articles={articlesList} />
+          </div>
+        ) : (
+          <div className="w-full h-[100vh] flex justify-center items-center">
+            Write your first post!
+          </div>
+        )}
         <div className="z-[10] hidden lg:inline-block lg:w-[320px] h-[600px] sticky top-[80px] px-5 py-8">
           <Profile />
           <Category />
