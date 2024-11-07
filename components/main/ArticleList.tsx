@@ -7,14 +7,14 @@ export default function ArticleList() {
         <Link href={`/article/${data.id}`}>
           <div
             key={index}
-            className="h-[240px] flex flex-col justify-between px-6 py-8 border-b"
+            className="w-[100%] h-[220px] flex flex-col justify-between pl-5 pr-12 py-7 border-b"
           >
             <div>
-              <div className="text-blue-500 text-sm mb-3">{data.category}</div>
-              <div className="text-3xl mb-2">{data.title}</div>
+              <div className="text-blue-500 text-sm">{data.category}</div>
+              <div className="text-3xl my-2 font-bold">{data.title}</div>
               <div>{data.preview}</div>
             </div>
-            <div className="text-sm text-zinc-400">{data.date}</div>
+            <div className="text-xs text-zinc-400">{data.date}</div>
           </div>{" "}
         </Link>
       ))}
