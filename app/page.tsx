@@ -83,7 +83,15 @@ export default function Home() {
       </div>
       <div className="w-full flex justify-center items-center py-[100px]">
         {pageNumbers.map((item, index) => (
-          <div key={index}>{item}</div>
+          <button
+            key={index}
+            onClick={() => setCurrentPage(Number(item))}
+            className={`${
+              currentPage === item ? "bg-blue-500 text-blue-100" : ""
+            } mx-1 w-[35px] h-[35px] text-center flex items-center justify-center rounded-full duration-100`}
+          >
+            {item}
+          </button>
         ))}
       </div>
     </div>
