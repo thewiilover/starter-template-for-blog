@@ -5,7 +5,7 @@ interface MenuStore {
   updateIsMobileMenuVisible: (input: boolean) => void;
 }
 
-const useMenuStore = create<MenuStore>()((set) => ({
+const useMenu = create<MenuStore>()((set) => ({
   isMobileMenuVisible: false,
   updateIsMobileMenuVisible: (input) =>
     set((state) => ({
@@ -13,4 +13,4 @@ const useMenuStore = create<MenuStore>()((set) => ({
     })),
 }));
 
-export default useMenuStore;
+export default useMenu;

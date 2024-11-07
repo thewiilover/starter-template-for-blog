@@ -3,11 +3,11 @@
 import Link from "next/link";
 import MenuIcon from "../../assets/menu.svg";
 import CloseIcon from "../../assets/close.svg";
-import useMenuStore from "@/src/store/menuStore";
+import useMenu from "@/src/store/menuStore";
 import { usePathname } from "next/navigation";
 
 export default function Navigation() {
-  const { isMobileMenuVisible, updateIsMobileMenuVisible } = useMenuStore();
+  const { isMobileMenuVisible, updateIsMobileMenuVisible } = useMenu();
   const pathname = usePathname();
 
   return (

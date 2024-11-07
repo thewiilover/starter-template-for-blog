@@ -1,12 +1,12 @@
 "use client";
 
-import useMenuStore from "@/src/store/menuStore";
+import useMenu from "@/src/store/menuStore";
 import { useEffect } from "react";
 import Profile from "../main/Profile";
 import Category from "../main/Category";
 
 export default function MobileMenu() {
-  const { updateIsMobileMenuVisible } = useMenuStore();
+  const { updateIsMobileMenuVisible } = useMenu();
   useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => {

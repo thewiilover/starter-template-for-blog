@@ -4,27 +4,32 @@ import ArticleList from "@/src/components/main/ArticleList";
 import Category from "../src/components/main/Category";
 import Profile from "../src/components/main/Profile";
 import MobileMenu from "@/src/components/mobile/MobileMenu";
-import useMenuStore from "@/src/store/menuStore";
+import useMenu from "@/src/store/menuStore";
 import { useEffect, useState } from "react";
 import { getListItem } from "@/src/utils/useRequest";
 import { PostsProps } from "./types";
+import useCategory from "@/src/store/categoryStore";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function Home() {
-  const { isMobileMenuVisible } = useMenuStore();
+  const { isMobileMenuVisible } = useMenu();
   const [articlesList, setArticlesList] = useState<PostsProps[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState("All");
-
+  const { currentCategory } = useCategory();
+  const router = useRouter();
+  const pathname = usePathname();
   useEffect(() => {
+    console.log(pathname);
     const fetchList = async () => {
       try {
-        const data = await getListItem(selectedCategory);
+        const data = await getListItem(currentCategory);
+        router.push(`?category=${currentCategory}`);
         setArticlesList(data);
       } catch (error) {
         console.error("Failed to fetch data:", error);
       }
     };
     fetchList();
-  }, [selectedCategory]);
+  }, [currentCategory, router]);
 
   return (
     <div className="w-full flex justify-center">
