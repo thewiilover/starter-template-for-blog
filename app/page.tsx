@@ -14,14 +14,17 @@ import useCategory from "@/src/store/categoryStore";
 import { getListItem } from "@/src/utils/useRequest";
 import { PostsProps } from "./types";
 import { getTotalPageNum, paginateItems } from "@/src/utils/usePagination";
+import usePageNumber from "@/src/store/pageNumberStore";
 
 export default function Home() {
   const router = useRouter();
   const [postsList, setPostsList] = useState<PostsProps[] | null>(null);
   const [pageNumbers, setPageNumbers] = useState<number[]>([]);
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const { currentCategory } = useCategory();
+  // const [currentPage, setCurrentPage] = useState<number>(1);
+
   const { isMobileMenuVisible } = useMenu();
+  const { currentCategory } = useCategory();
+  const { currentPage, changeCurrentPage } = usePageNumber();
 
   const itemsPerPage = 6;
 
@@ -44,7 +47,10 @@ export default function Home() {
 
   useEffect(() => {
     const handlePopState = async (e: any) => {
-      const target = e.currentTarget.location.search.split("=") || "All";
+      const target = e.currentTarget.location.search.split("=") || ["All"];
+      if (target.length === 1) {
+        target.push(["All"]);
+      }
       fetchList(target[target.length - 1]);
     };
     window.addEventListener("popstate", handlePopState);
@@ -85,7 +91,7 @@ export default function Home() {
         {pageNumbers.map((item, index) => (
           <button
             key={index}
-            onClick={() => setCurrentPage(Number(item))}
+            onClick={() => changeCurrentPage(Number(item))}
             className={`${
               currentPage === item ? "bg-blue-500 text-blue-100" : ""
             } mx-1 w-[35px] h-[35px] text-center flex items-center justify-center rounded-full duration-100`}

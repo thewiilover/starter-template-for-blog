@@ -13,9 +13,11 @@ export default function MarkDownPost({ content }: { content: string }) {
             style={{
               fontSize: "2.25em",
               fontWeight: 600,
-              paddingBottom: "0.25em",
+              paddingTop: "0.2em",
+              paddingBottom: "0.6em",
               marginBottom: "0.8em",
-              borderBottom: "solid #00000030",
+              borderBottom: "solid #00000020",
+              lineHeight: "1.2em",
             }}
             {...props}
           ></h1>
