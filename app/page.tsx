@@ -5,31 +5,42 @@ import Category from "../src/components/main/Category";
 import Profile from "../src/components/main/Profile";
 import MobileMenu from "@/src/components/mobile/MobileMenu";
 import useMenu from "@/src/store/menuStore";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { getListItem } from "@/src/utils/useRequest";
 import { PostsProps } from "./types";
 import useCategory from "@/src/store/categoryStore";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function Home() {
   const { isMobileMenuVisible } = useMenu();
   const [articlesList, setArticlesList] = useState<PostsProps[]>([]);
   const { currentCategory } = useCategory();
   const router = useRouter();
-  const pathname = usePathname();
+
+  const fetchList = async (category: string) => {
+    try {
+      const data = await getListItem(category);
+      setArticlesList(data);
+    } catch (error) {
+      console.error("Failed to fetch data:", error);
+    }
+  };
+
   useEffect(() => {
-    console.log(pathname);
-    const fetchList = async () => {
-      try {
-        const data = await getListItem(currentCategory);
-        router.push(`?category=${currentCategory}`);
-        setArticlesList(data);
-      } catch (error) {
-        console.error("Failed to fetch data:", error);
-      }
+    fetchList(currentCategory);
+    router.push(`?category=${currentCategory}`);
+  }, [currentCategory]);
+
+  useEffect(() => {
+    const handlePopState = async (e: any) => {
+      const target = e.currentTarget.location.search.split("=") || "All";
+      fetchList(target[target.length - 1]);
     };
-    fetchList();
-  }, [currentCategory, router]);
+    window.addEventListener("popstate", handlePopState);
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, []);
 
   return (
     <div className="w-full flex justify-center">
