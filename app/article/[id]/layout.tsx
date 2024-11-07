@@ -10,5 +10,11 @@ export default function Layout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <Article />;
+  return (
+    <div className="flex justify-center pb-[120px]">
+      <div className="w-[90%] lg:w-[1024px]">
+        <Article />
+      </div>
+    </div>
+  );
 }

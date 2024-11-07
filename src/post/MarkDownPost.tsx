@@ -13,9 +13,9 @@ export default function MarkDownPost({ content }: { content: string }) {
             style={{
               fontSize: "2.25em",
               fontWeight: 600,
-              marginBottom: "1em",
               paddingBottom: "0.25em",
-              borderBottom: "1px solid #dddddd",
+              marginBottom: "0.8em",
+              borderBottom: "solid #00000030",
             }}
             {...props}
           ></h1>
@@ -29,6 +29,16 @@ export default function MarkDownPost({ content }: { content: string }) {
             }}
             {...props}
           ></h2>
+        ),
+        h3: (props: any) => (
+          <h3
+            style={{
+              fontSize: "0.9em",
+              fontWeight: 300,
+              color: "#71717a",
+            }}
+            {...props}
+          ></h3>
         ),
         pre: (props: any) => (
           <pre
