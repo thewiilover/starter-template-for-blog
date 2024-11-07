@@ -31,6 +31,5 @@ export async function GET(req: NextRequest) {
   });
 
   const result = allPostsData.filter((item) => item.id === selectedId);
-  console.log(result);
   return Response.json(result);
 }

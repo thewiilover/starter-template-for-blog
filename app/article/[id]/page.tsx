@@ -23,13 +23,9 @@ export default function Article() {
     fetchList(Number(id));
   }, []);
 
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
-
   return (
     <div className="w-full flex justify-center">
-      <div className="w-[1000px]">
+      <div className="w-[1024px]">
         {data ? (
           <div className="pt-7 pb-12">
             <MarkDownPost content={data.content} />
