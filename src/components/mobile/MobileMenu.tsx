@@ -2,7 +2,7 @@
 
 import useMenu from "@/src/store/menuStore";
 import { useEffect } from "react";
-import Profile from "../main/Profile";
+import Profile from "../global/Profile";
 import Category from "../main/Category";
 
 export default function MobileMenu() {

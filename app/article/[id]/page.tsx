@@ -1,7 +1,7 @@
 "use client";
 
 import { PostsProps } from "@/app/types";
-import Profile from "@/src/components/main/Profile";
+import Profile from "@/src/components/global/Profile";
 import MarkDownPost from "@/src/post/MarkDownPost";
 import { getPost } from "@/src/utils/useRequest";
 import { useParams } from "next/navigation";

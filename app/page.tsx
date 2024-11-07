@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 import ArticleList from "@/src/components/main/ArticleList";
 import Category from "../src/components/main/Category";
-import Profile from "../src/components/main/Profile";
+import Profile from "../src/components/global/Profile";
 import MobileMenu from "@/src/components/mobile/MobileMenu";
 
 import useMenu from "@/src/store/menuStore";
@@ -29,7 +29,7 @@ export default function Home() {
     try {
       const data = await getListItem(category);
       if (data) {
-        setArticlesList(paginateItems(data, itemsPerPage, 1));
+        setArticlesList(paginateItems(data, itemsPerPage, currentPage));
         setPageNumbers(getTotalPageNum(data, itemsPerPage));
       }
     } catch (error) {
@@ -40,7 +40,7 @@ export default function Home() {
   useEffect(() => {
     fetchList(currentCategory);
     router.push(`?category=${currentCategory}`);
-  }, [currentCategory]);
+  }, [currentCategory, currentPage]);
 
   useEffect(() => {
     const handlePopState = async (e: any) => {
