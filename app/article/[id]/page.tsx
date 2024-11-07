@@ -25,7 +25,7 @@ export default function Article() {
 
   return (
     <div className="w-full flex justify-center">
-      <div className="w-[1024px]">
+      <div className="px-12 lg:w-[1024px]">
         {data ? (
           <div className="pt-7 pb-12">
             <MarkDownPost content={data.content} />

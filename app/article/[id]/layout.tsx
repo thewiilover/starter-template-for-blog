@@ -10,9 +10,5 @@ export default function Layout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <div>
-      <Article />
-    </div>
-  );
+  return <Article />;
 }

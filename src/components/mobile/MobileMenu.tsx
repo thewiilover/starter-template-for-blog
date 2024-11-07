@@ -2,6 +2,8 @@
 
 import useMenuStore from "@/src/store/menuStore";
 import { useEffect } from "react";
+import Profile from "../main/Profile";
+import Category from "../main/Category";
 
 export default function MobileMenu() {
   const { updateIsMobileMenuVisible } = useMenuStore();
@@ -18,7 +20,10 @@ export default function MobileMenu() {
         onClick={() => updateIsMobileMenuVisible(false)}
         className="w-[30%] h-full"
       ></div>
-      <div className="menu-open w-[70%] h-full bg-blue-500">text</div>
+      <div className="menu-open w-[70%] h-full bg-white">
+        <Profile />
+        <Category />
+      </div>
     </div>
   );
 }
