@@ -5,7 +5,7 @@ export default function ArticleList({ articles }: { articles: PostsProps[] }) {
   return (
     <>
       {articles.length === 0 ? (
-        <div className="h-[100vh] flex justify-center items-center pb-[85px]">
+        <div className="h-[100vh] flex justify-center items-center">
           No Result
         </div>
       ) : (

@@ -1,26 +1,37 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+
 import ArticleList from "@/src/components/main/ArticleList";
 import Category from "../src/components/main/Category";
 import Profile from "../src/components/main/Profile";
 import MobileMenu from "@/src/components/mobile/MobileMenu";
+
 import useMenu from "@/src/store/menuStore";
-import { useEffect, useState } from "react";
+import useCategory from "@/src/store/categoryStore";
+
 import { getListItem } from "@/src/utils/useRequest";
 import { PostsProps } from "./types";
-import useCategory from "@/src/store/categoryStore";
-import { useRouter } from "next/navigation";
+import { getTotalPageNum, paginateItems } from "@/src/utils/usePagination";
 
 export default function Home() {
-  const { isMobileMenuVisible } = useMenu();
-  const [articlesList, setArticlesList] = useState<PostsProps[] | null>(null);
-  const { currentCategory } = useCategory();
   const router = useRouter();
+  const [articlesList, setArticlesList] = useState<PostsProps[] | null>(null);
+  const [pageNumbers, setPageNumbers] = useState<number[]>([]);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const { currentCategory } = useCategory();
+  const { isMobileMenuVisible } = useMenu();
+
+  const itemsPerPage = 6;
 
   const fetchList = async (category: string) => {
     try {
       const data = await getListItem(category);
-      setArticlesList(data);
+      if (data) {
+        setArticlesList(paginateItems(data, itemsPerPage, 1));
+        setPageNumbers(getTotalPageNum(data, itemsPerPage));
+      }
     } catch (error) {
       console.error("Failed to fetch data:", error);
     }
@@ -43,30 +54,37 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="w-full flex justify-center">
-      {isMobileMenuVisible && (
-        <div className="inline-block lg:hidden">
-          <MobileMenu />
-        </div>
-      )}
-      <div
-        className={`w-full ${
-          articlesList && articlesList.length > 3 ? "" : "h-[100vh]"
-        } lg:w-[1024px] flex justify-between`}
-      >
-        {articlesList ? (
-          <div className="w-full lg:w-[680px] pb-[100px]">
-            <ArticleList articles={articlesList} />
-          </div>
-        ) : (
-          <div className="w-full h-[100vh] flex justify-center items-center">
-            Write your first post!
+    <div className="">
+      <div className="w-full flex justify-center">
+        {isMobileMenuVisible && (
+          <div className="inline-block lg:hidden">
+            <MobileMenu />
           </div>
         )}
-        <div className="z-[10] hidden lg:inline-block lg:w-[320px] h-[600px] sticky top-[80px] px-5 py-8">
-          <Profile />
-          <Category />
+        <div
+          className={`w-full ${
+            articlesList && articlesList.length > 3 ? "" : "h-[100vh]"
+          } lg:w-[1024px] flex justify-between`}
+        >
+          {articlesList ? (
+            <div className="w-full lg:w-[680px]">
+              <ArticleList articles={articlesList} />
+            </div>
+          ) : (
+            <div className="w-full h-[100vh] flex justify-center items-center">
+              Write your first post!
+            </div>
+          )}
+          <div className="z-[10] hidden lg:inline-block lg:w-[320px] h-[600px] sticky top-[80px] px-5 py-8">
+            <Profile />
+            <Category />
+          </div>
         </div>
+      </div>
+      <div className="w-full flex justify-center items-center py-[100px]">
+        {pageNumbers.map((item, index) => (
+          <div key={index}>{item}</div>
+        ))}
       </div>
     </div>
   );
