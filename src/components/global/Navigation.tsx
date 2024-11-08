@@ -24,16 +24,18 @@ export default function Navigation() {
   return (
     <div className="z-[100] fixed w-screen lg:w-full h-[65px] flex justify-between items-center pl-6 pr-8 lg:px-6 bg-white dark:bg-contrast-900 shadow-sm">
       {/* Blog title */}
-      <Link
-        href="/"
-        className="text-xl dark:text-contrast-200"
-        onClick={() => {
-          changeCurrentCategory("All");
-          changeCurrentPage(1);
-        }}
-      >
-        {blogTitle}
-      </Link>
+      <div className="flex items-center">
+        <Link
+          href="/"
+          className="text-xl dark:text-contrast-200"
+          onClick={() => {
+            changeCurrentCategory("All");
+            changeCurrentPage(1);
+          }}
+        >
+          {blogTitle}
+        </Link>
+      </div>
       {/* For mobile screen */}
       {pathname === "/" && (
         <div>
