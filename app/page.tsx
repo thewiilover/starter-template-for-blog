@@ -25,17 +25,18 @@ export default function Home() {
   const [pageNumbers, setPageNumbers] = useState<number[]>([]);
 
   const { isMobileMenuVisible } = useMenu();
-  const { currentCategory } = useCategory();
+  const { currentCategory, changeCurrentCategory } = useCategory();
   const { currentPage, changeCurrentPage } = usePageNumber();
 
-  // fetch post list
-  const fetchList = async (category: string) => {
-    const itemsPerPage = 6;
+  // if you want change item cnt per a page, change this value.
+  const itemsPerPage = 6;
 
+  // fetch post list
+  const fetchPostList = async (category: string, page: number) => {
     try {
       const data = await getListItem(category);
       if (data) {
-        setPostList(paginateItems(data, itemsPerPage, currentPage));
+        setPostList(paginateItems(data, itemsPerPage, page));
         setPageNumbers(getTotalPageNum(data, itemsPerPage));
       }
     } catch (error) {
@@ -43,25 +44,34 @@ export default function Home() {
     }
   };
 
-  // routing (when you click categories)
+  // first init when page is mounted
+  useEffect(() => {
+    fetchPostList(currentCategory, currentPage);
+  }, []);
+
+  // change postList when currentCategory is changed
   useEffect(() => {
     changeCurrentPage(1);
+    fetchPostList(currentCategory, currentPage);
+    router.push(`?category=${currentCategory}`);
   }, [currentCategory]);
 
+  // change postList when currentPage is changed
   useEffect(() => {
-    changeCurrentPage(1);
-    fetchList(currentCategory);
-    router.push(`?category=${currentCategory}`);
-  }, [currentCategory, currentPage]);
+    fetchPostList(currentCategory, currentPage);
+  }, [currentPage]);
 
-  // routing (with popstate)
+  // change postList when popstate is changed
   useEffect(() => {
     const handlePopState = async (e: any) => {
       const target = e.currentTarget.location.search.split("=") || ["All"];
       if (target.length === 1) {
         target.push(["All"]);
       }
-      fetchList(target[target.length - 1]);
+      const selectedCategory = target[target.length - 1];
+      changeCurrentPage(1);
+      changeCurrentCategory(selectedCategory);
+      fetchPostList(selectedCategory, currentPage);
     };
     window.addEventListener("popstate", handlePopState);
     return () => {
