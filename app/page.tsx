@@ -38,6 +38,7 @@ export default function Home() {
       if (data) {
         setPostList(paginateItems(data, itemsPerPage, page));
         setPageNumbers(getTotalPageNum(data, itemsPerPage));
+        window.scrollTo(0, 0);
       }
     } catch (error) {
       console.error("Failed to fetch data:", error);
