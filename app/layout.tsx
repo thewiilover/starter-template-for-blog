@@ -6,7 +6,7 @@ import Navigation from "../src/components/global/Navigation";
 import Footer from "../src/components/global/Footer";
 
 // your blog title
-import { blogTitle } from "@/console/navigation";
+import { blogTitle } from "@/custom/navigation";
 
 export const metadata: Metadata = {
   title: blogTitle,

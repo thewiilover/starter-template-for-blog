@@ -2,7 +2,7 @@
 import useCategory from "@/src/store/categoryStore";
 
 // your category list
-import { categoryNames } from "@/console/category";
+import { categoryNames } from "@/custom/category";
 
 export default function Category() {
   const { currentCategory, changeCurrentCategory } = useCategory();

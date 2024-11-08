@@ -13,7 +13,7 @@ import MenuIcon from "../../assets/menu.svg";
 import CloseIcon from "../../assets/close.svg";
 
 // your blog title
-import { blogTitle } from "@/console/navigation";
+import { blogTitle } from "@/custom/navigation";
 
 export default function Navigation() {
   const pathname = usePathname();

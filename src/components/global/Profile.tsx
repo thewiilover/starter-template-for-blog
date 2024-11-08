@@ -2,14 +2,14 @@ import Image from "next/image";
 
 // icon
 import OpenIcon from "../../assets/open.svg";
-import ProfilePic from "../../../console/profile_pic.png";
+import ProfilePic from "../../../custom/profile_pic.png";
 
 // you profile
 import {
   profileName,
   profileGithubLink,
   profileIntroduction,
-} from "@/console/profile";
+} from "@/custom/profile";
 
 export default function Profile() {
   return (
