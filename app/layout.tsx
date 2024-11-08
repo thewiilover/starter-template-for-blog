@@ -21,10 +21,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html>
+    <html className="dark">
       <body>
         <Navigation />
-        <div className="pt-[70px] dark:bg-zinc-900">{children}</div>
+        <div className="pt-[70px] dark:bg-zinc-900 dark:text-zinc-100">
+          {children}
+        </div>
         <Footer />
       </body>
     </html>

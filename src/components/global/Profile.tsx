@@ -28,7 +28,7 @@ export default function Profile() {
       <a
         target="_blanck"
         href={profileGithubLink}
-        className="flex items-center text-blue-500 text-xs font-bold mb-2"
+        className="flex items-center text-primary-500 text-xs font-bold mb-2"
       >
         Github <OpenIcon />
       </a>

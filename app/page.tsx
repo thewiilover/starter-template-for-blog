@@ -135,7 +135,7 @@ export default function Home() {
             key={index}
             onClick={() => changeCurrentPage(Number(item))}
             className={`${
-              currentPage === item ? "bg-blue-500 text-blue-100" : ""
+              currentPage === item ? "bg-primary-500 text-primary-100" : ""
             } mx-1 w-[35px] h-[35px] flex items-center justify-center text-sm text-center rounded-full duration-100`}
           >
             {item}

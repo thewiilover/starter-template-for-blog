@@ -14,8 +14,8 @@ export default function Category() {
           key={index}
           onClick={() => changeCurrentCategory(name)}
           className={`${
-            currentCategory === name ? "text-blue-500 underline" : ""
-          } text-sm pl-2 my-2 hover:cursor-pointer hover:text-blue-500`}
+            currentCategory === name ? "text-primary-500 underline" : ""
+          } text-sm pl-2 my-2 hover:cursor-pointer hover:text-primary-500`}
         >
           {name}
         </div>
