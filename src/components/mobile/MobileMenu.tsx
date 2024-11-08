@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import Profile from "../global/Profile";
 import Category from "../main/Category";
 
-// global state management
+// global value
 import useMenu from "@/src/store/menuStore";
 
 export default function MobileMenu() {
@@ -21,14 +21,14 @@ export default function MobileMenu() {
   }, []);
 
   return (
-    <div className="z-[20] fixed flex top-0 right-0 w-full h-[100vh] pt-[65px] bg-[#00000070]">
+    <div className="z-[20] fixed flex top-0 right-0 w-full h-[100vh] pt-[65px] bg-[#00000080]">
       {/* For closing menu when you click background */}
       <div
         onClick={() => updateIsMobileMenuVisible(false)}
         className="w-[20%] h-full"
       ></div>
       {/* Side menu for profile and category. The classname 'menu-open' is an animation from global.css */}
-      <div className="menu-open w-[80%] h-full bg-white">
+      <div className="menu-open w-[80%] h-full bg-white dark:bg-contrast-900">
         <Profile />
         <Category />
       </div>

@@ -22,11 +22,11 @@ export default function Navigation() {
   const { changeCurrentPage } = usePageNumber();
 
   return (
-    <div className="z-[100] fixed w-screen lg:w-full h-[65px] flex justify-between items-center pl-6 pr-8 lg:px-6 bg-white dark:bg-zinc-900 shadow-sm">
+    <div className="z-[100] fixed w-screen lg:w-full h-[65px] flex justify-between items-center pl-6 pr-8 lg:px-6 bg-white dark:bg-contrast-900 shadow-sm">
       {/* Blog title */}
       <Link
         href="/"
-        className="text-xl"
+        className="text-xl dark:text-contrast-200"
         onClick={() => {
           changeCurrentCategory("All");
           changeCurrentPage(1);
@@ -40,14 +40,14 @@ export default function Navigation() {
           {isMobileMenuVisible ? (
             <div
               onClick={() => updateIsMobileMenuVisible(false)}
-              className="flex lg:hidden cursor-pointer"
+              className="flex lg:hidden cursor-pointer dark:bg-contrast-300 dark:rounded p-1"
             >
               <CloseIcon />
             </div>
           ) : (
             <div
               onClick={() => updateIsMobileMenuVisible(true)}
-              className="flex lg:hidden cursor-pointer"
+              className="flex lg:hidden cursor-pointer dark:bg-contrast-300 dark:rounded p-1"
             >
               <MenuIcon />
             </div>

@@ -24,7 +24,7 @@ export default function RootLayout({
     <html className="dark">
       <body>
         <Navigation />
-        <div className="pt-[70px] dark:bg-zinc-900 dark:text-zinc-100">
+        <div className="pt-[70px] dark:bg-contrast-900 dark:text-contrast-300">
           {children}
         </div>
         <Footer />

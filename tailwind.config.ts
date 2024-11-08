@@ -1,5 +1,5 @@
 import type { Config } from "tailwindcss";
-import { primary, gray } from "./custom/colors";
+import { primary, contrast } from "./custom/colors";
 
 const config: Config = {
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}", "./app/**/*.{js,ts,jsx,tsx,mdx}"],
@@ -20,19 +20,19 @@ const config: Config = {
           900: primary[900],
           950: primary[950],
         },
-      },
-      gray: {
-        50: gray[50],
-        100: gray[100],
-        200: gray[200],
-        300: gray[300],
-        400: gray[400],
-        500: gray[500],
-        600: gray[600],
-        700: gray[700],
-        800: gray[800],
-        900: gray[900],
-        950: gray[950],
+        contrast: {
+          50: contrast[50],
+          100: contrast[100],
+          200: contrast[200],
+          300: contrast[300],
+          400: contrast[400],
+          500: contrast[500],
+          600: contrast[600],
+          700: contrast[700],
+          800: contrast[800],
+          900: contrast[900],
+          950: contrast[950],
+        },
       },
     },
   },

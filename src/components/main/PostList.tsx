@@ -27,7 +27,7 @@ export default function PostList({ post }: { post: PostProps[] }) {
       {/* Post list in main page */}
       {post.map((data: PostProps, index: number) => (
         <Link key={index} href={`/post/${data.id}`}>
-          <div className="hover:bg-primary-50 duration-150 w-screen lg:w-full lg:h-[220px] flex flex-col justify-between pl-5 pr-12 py-5 border-b">
+          <div className="hover:bg-primary-50 dark:hover:bg-contrast-800 duration-150 w-screen lg:w-full lg:h-[220px] flex flex-col justify-between pl-5 pr-12 py-5 border-b dark:border-b-contrast-600">
             <div>
               <div className="text-primary-500 text-sm font-bold">
                 {data.category}
@@ -35,13 +35,13 @@ export default function PostList({ post }: { post: PostProps[] }) {
               <div className="text-xl mt-1 mb-3 font-bold leading-6">
                 {data.title}
               </div>
-              <div className="text-xs md:text-sm text-zinc-600">
+              <div className="text-xs md:text-sm text-contrast-500">
                 {data.preview.length < 250
                   ? data.preview
                   : sliceText(data.preview, 250)}
               </div>
             </div>
-            <div className="text-xs text-zinc-400 mt-3 lg:mt-0">
+            <div className="text-xs text-contrast-400 mt-3 lg:mt-0">
               {data.date}
             </div>
           </div>
