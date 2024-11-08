@@ -29,10 +29,10 @@ export default function MobileMenu() {
         className="w-[20%] h-full"
       ></div>
       {/* Side menu for profile and category. The classname 'menu-open' is an animation from global.css */}
-      <div className="menu-open w-[80%] h-full bg-white dark:bg-contrast-900">
+      <div className="menu-open w-[80%] h-full bg-white">
         <div
           onClick={() => updateIsMobileMenuVisible(false)}
-          className="h-[65px] lg:hidden flex justify-end p-1 mr-3 items-center dark:bg-contrast-300 dark:rounded"
+          className="h-[65px] lg:hidden flex justify-end p-1 mr-3 items-center"
         >
           <CloseIcon />
         </div>

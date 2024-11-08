@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --bg-color: #ffffff;
+  --bg-light: #e3fdfd;
+
+  --font-color: #1f2933;
+  --font-light: #000000;
+}
+
+body.dark-theme {
+  --bg-color: #111216;
+  --bg-light: #24252c;
+
+  --font-color: #9999b3;
+  --font-light: #fff;
+}
+
 html,
 body {
   overflow-x: hidden;

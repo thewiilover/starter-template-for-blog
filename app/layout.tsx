@@ -7,8 +7,6 @@ import Footer from "../src/components/global/Footer";
 
 // your blog title
 import { blogTitle } from "@/custom/navigation";
-import ThemeProvider from "@/src/components/global/ThemeProvider";
-
 export const metadata: Metadata = {
   title: blogTitle,
   icons: {
@@ -16,7 +14,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -24,13 +22,9 @@ export default function RootLayout({
   return (
     <html>
       <body>
-        <ThemeProvider>
-          <Navigation />
-          <div className="pt-[70px] dark:bg-contrast-900 dark:text-contrast-300">
-            {children}
-          </div>
-          <Footer />
-        </ThemeProvider>
+        <Navigation />
+        <div className="pt-[70px]">{children}</div>
+        <Footer />
       </body>
     </html>
   );
