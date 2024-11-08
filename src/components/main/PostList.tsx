@@ -4,8 +4,26 @@ import Link from "next/link";
 import { PostProps } from "@/app/types";
 
 export default function PostList({ post }: { post: PostProps[] }) {
+  // text slice function for post preview text
+  const sliceText = (text: string, maxLength: number) => {
+    if (text.length <= maxLength) return text;
+
+    const words = text.split(" ");
+    let currentText = "";
+
+    for (let word of words) {
+      if ((currentText + word).length <= maxLength) {
+        currentText += word + " ";
+      } else {
+        break;
+      }
+    }
+
+    return currentText.trim() + "...";
+  };
+
   return (
-    <>
+    <div className="mt-5">
       {/* Post list in main page */}
       {post.map((data: PostProps, index: number) => (
         <Link key={index} href={`/post/${data.id}`}>
@@ -18,7 +36,9 @@ export default function PostList({ post }: { post: PostProps[] }) {
                 {data.title}
               </div>
               <div className="text-xs md:text-sm text-zinc-600">
-                {data.preview}
+                {data.preview.length < 250
+                  ? data.preview
+                  : sliceText(data.preview, 250)}
               </div>
             </div>
             <div className="text-xs text-zinc-400 mt-3 lg:mt-0">
@@ -27,6 +47,6 @@ export default function PostList({ post }: { post: PostProps[] }) {
           </div>
         </Link>
       ))}
-    </>
+    </div>
   );
 }
