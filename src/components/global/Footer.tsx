@@ -1,3 +1,8 @@
 export default function Footer() {
-  return <div className="w-full h-[200px] bg-zinc-900">This is Footer.</div>;
+  return (
+    // This is Footer. Update the content as you want!
+    <div className="w-full h-[200px] flex justify-center items-center text-center text-sm text-zinc-100 font-extralight bg-zinc-900">
+      NEXT-BLOG-BOILERPLATE <br /> made by jnoncode
+    </div>
+  );
 }

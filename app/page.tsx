@@ -116,7 +116,9 @@ export default function Home() {
           </div>
           {/* Side Menu on the main page, Profile and Category */}
           <div className="z-[10] hidden lg:inline-block lg:w-[320px] h-[600px] sticky top-[80px] px-5 py-8">
-            <Profile />
+            <div className="shadow rounded-lg p-2">
+              <Profile />
+            </div>
             <Category />
           </div>
         </div>

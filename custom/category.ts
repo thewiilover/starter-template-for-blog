@@ -1,1 +1,1 @@
-export const categoryNames = ["All", "JavaScript", "TypeScript", "Example"];
+export const categoryNames = ["All", "JavaScript", "TypeScript", "Open Source"];
