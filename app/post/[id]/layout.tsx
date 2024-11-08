@@ -1,10 +1,4 @@
-import type { Metadata } from "next";
-import { blogTitle } from "@/console/navigation";
 import Post from "./page";
-
-export const metadata: Metadata = {
-  title: blogTitle,
-};
 
 export default function Layout() {
   return (

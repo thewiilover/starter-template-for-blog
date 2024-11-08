@@ -1,4 +1,7 @@
+// global state management
 import useCategory from "@/src/store/categoryStore";
+
+// your category list
 import { categoryNames } from "@/console/category";
 
 export default function Category() {

@@ -1,3 +1,4 @@
+// global state management for current page number in main page
 import { create } from "zustand";
 
 interface PageNumberStore {

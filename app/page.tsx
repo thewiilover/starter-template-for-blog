@@ -3,18 +3,21 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
+// components
 import Category from "../src/components/main/Category";
 import Profile from "../src/components/global/Profile";
 import MobileMenu from "@/src/components/mobile/MobileMenu";
-import PostsList from "@/src/components/main/PostsList";
+import PostList from "@/src/components/main/PostList";
 
+// global state management
 import useMenu from "@/src/store/menuStore";
 import useCategory from "@/src/store/categoryStore";
 import usePageNumber from "@/src/store/pageNumberStore";
 
+// functions and type
 import { getListItem } from "@/src/utils/useRequest";
-import { PostsProps } from "./types";
 import { getTotalPageNum, paginateItems } from "@/src/utils/usePagination";
+import { PostsProps } from "./types";
 
 export default function Home() {
   const router = useRouter();
@@ -25,6 +28,7 @@ export default function Home() {
   const { currentCategory } = useCategory();
   const { currentPage, changeCurrentPage } = usePageNumber();
 
+  // fetch post list
   const fetchList = async (category: string) => {
     const itemsPerPage = 6;
 
@@ -39,11 +43,14 @@ export default function Home() {
     }
   };
 
+  // routing (when you click categories)
   useEffect(() => {
+    changeCurrentPage(1);
     fetchList(currentCategory);
     router.push(`?category=${currentCategory}`);
   }, [currentCategory, currentPage]);
 
+  // routing (with popstate)
   useEffect(() => {
     const handlePopState = async (e: any) => {
       const target = e.currentTarget.location.search.split("=") || ["All"];
@@ -59,33 +66,48 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="">
+    <div className="w-full">
+      {/* Mobile menu when width < 1024px */}
+      {isMobileMenuVisible && (
+        <div className="inline-block lg:hidden">
+          <MobileMenu />
+        </div>
+      )}
       <div className="w-full flex justify-center">
-        {isMobileMenuVisible && (
-          <div className="inline-block lg:hidden">
-            <MobileMenu />
-          </div>
-        )}
+        {/* Post list */}
         <div
           className={`w-full ${
             postsList && postsList.length > 3 ? "" : "h-[100vh]"
           } lg:w-[1024px] flex justify-between`}
         >
-          {postsList ? (
-            <div className="w-full lg:w-[680px]">
-              <PostsList posts={postsList} />
-            </div>
-          ) : (
-            <div className="w-full h-[100vh] flex justify-center items-center">
-              Write your first post!
-            </div>
-          )}
+          <div className="w-full lg:w-[700px]">
+            {/* First, html returns 'Loading' */}
+            {/* After loading, if there's no result, api returns null and html returns 'No result' */}
+            {postsList && postsList.length === 0 && (
+              <div className="pb-[100px] pr-0 lg:pr-[100px] h-[100vh] flex justify-center items-center">
+                {currentCategory === "All" ? "LOADING" : "No Result"}
+              </div>
+            )}
+            {postsList && postsList.length > 0 && (
+              <div className="lg:w-[680px]">
+                <PostList posts={postsList} />
+              </div>
+            )}
+            {/* if there's nothing in the __post foler, you get this result. */}
+            {!postsList && (
+              <div className="h-[100vh] flex justify-center items-center">
+                Write your first post!
+              </div>
+            )}
+          </div>
+          {/* Side Menu on the main page, Profile and Category */}
           <div className="z-[10] hidden lg:inline-block lg:w-[320px] h-[600px] sticky top-[80px] px-5 py-8">
             <Profile />
             <Category />
           </div>
         </div>
       </div>
+      {/* PageNumbers for pagination */}
       <div className="w-full flex justify-center items-center py-[100px]">
         {pageNumbers.map((item, index) => (
           <button

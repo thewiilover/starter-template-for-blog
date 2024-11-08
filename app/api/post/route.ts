@@ -4,7 +4,7 @@ import matter from "gray-matter";
 import { NextRequest } from "next/server";
 import { PostsProps } from "../../types";
 
-const postsDirectory = "__posts";
+const postsDirectory = "__post";
 
 export async function GET(req: NextRequest) {
   const searchParams = req.nextUrl.searchParams;

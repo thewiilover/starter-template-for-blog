@@ -1,3 +1,5 @@
+// function for pagination in main page
+
 export const paginateItems = <T>(
   items: T[],
   itemsPerPage: number,

@@ -1,3 +1,5 @@
+// api function for getting post data
+
 export async function getListItem(allPostsData: string) {
   const res = await fetch(
     `http://localhost:3000/api/listItem?category=${allPostsData}`,

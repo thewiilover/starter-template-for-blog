@@ -3,12 +3,16 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+// global state management
 import useMenu from "@/src/store/menuStore";
 import useCategory from "@/src/store/categoryStore";
 import usePageNumber from "@/src/store/pageNumberStore";
 
+// icon
 import MenuIcon from "../../assets/menu.svg";
 import CloseIcon from "../../assets/close.svg";
+
+// your blog title
 import { blogTitle } from "@/console/navigation";
 
 export default function Navigation() {
@@ -19,6 +23,7 @@ export default function Navigation() {
 
   return (
     <div className="z-[100] fixed w-full h-[65px] flex justify-between items-center px-6 bg-white shadow-sm">
+      {/* Blog title */}
       <Link
         href="/"
         className="text-xl"
@@ -29,6 +34,7 @@ export default function Navigation() {
       >
         {blogTitle}
       </Link>
+      {/* For mobile screen */}
       {pathname === "/" && (
         <div>
           {isMobileMenuVisible ? (

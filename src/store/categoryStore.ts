@@ -1,3 +1,5 @@
+// global state management for current category name
+
 import { create } from "zustand";
 
 interface CategoryStore {

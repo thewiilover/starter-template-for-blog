@@ -1,3 +1,5 @@
+// global state management for mobile menu visibility
+
 import { create } from "zustand";
 
 interface MenuStore {

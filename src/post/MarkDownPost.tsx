@@ -1,9 +1,8 @@
-// import { colors } from "../../utils/constants";
-
 import ReactMarkdown from "react-markdown";
 import { materialDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 
+// Markdown to HTML. Custom it as you want!
 export default function MarkDownPost({ content }: { content: string }) {
   return (
     <ReactMarkdown
@@ -69,7 +68,10 @@ export default function MarkDownPost({ content }: { content: string }) {
           );
         },
         p: (props: any) => (
-          <p style={{ lineHeight: "2em", marginBottom: "2em" }} {...props}></p>
+          <p
+            style={{ lineHeight: "1.8em", marginBottom: "2em" }}
+            {...props}
+          ></p>
         ),
         ul: (props: any) => (
           <ul style={{ marginBottom: "1em" }} {...props}></ul>

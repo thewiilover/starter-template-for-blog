@@ -1,16 +1,20 @@
+import Image from "next/image";
+
+// icon
 import OpenIcon from "../../assets/open.svg";
 import ProfilePic from "../../../console/profile_pic.png";
 
+// you profile
 import {
   profileName,
   profileGithubLink,
   profileIntroduction,
 } from "@/console/profile";
-import Image from "next/image";
 
 export default function Profile() {
   return (
     <div className="w-full flex flex-col items-center p-10 lg:p-3">
+      {/* profile img */}
       <Image
         width={70}
         height={70}
@@ -18,7 +22,9 @@ export default function Profile() {
         alt="profile"
         className="rounded-full"
       />
+      {/* profile name */}
       <div className="mt-3 font-bold">{profileName}</div>
+      {/* github link */}
       <a
         target="_blanck"
         href={profileGithubLink}
@@ -26,6 +32,7 @@ export default function Profile() {
       >
         Github <OpenIcon />
       </a>
+      {/* profile introduction */}
       <div className="text-xs my-1">{profileIntroduction}</div>
     </div>
   );

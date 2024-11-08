@@ -3,9 +3,11 @@
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
+// components
 import Profile from "@/src/components/global/Profile";
 import MarkDownPost from "@/src/post/MarkDownPost";
 
+// function and type
 import { getPost } from "@/src/utils/useRequest";
 import { PostsProps } from "@/app/types";
 
@@ -13,6 +15,7 @@ export default function Post() {
   const { id } = useParams();
   const [data, setData] = useState<PostsProps | null>(null);
 
+  // fetch post content by post id
   useEffect(() => {
     const fetchList = async (id: number) => {
       try {
@@ -27,7 +30,8 @@ export default function Post() {
   }, []);
 
   return (
-    <div>
+    <>
+      {/* Post  */}
       {data ? (
         <div className="pt-7 pb-12">
           <MarkDownPost content={data.content} />
@@ -37,11 +41,12 @@ export default function Post() {
           LOADING
         </div>
       )}
+      {/* Profile under your post */}
       <div className="border-t w-full py-[70px] flex justify-center">
         <div className="w-full lg:w-[300px]">
           <Profile />
         </div>
       </div>
-    </div>
+    </>
   );
 }
