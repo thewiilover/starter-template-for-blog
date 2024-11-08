@@ -1,4 +1,4 @@
-export interface PostsProps {
+export interface PostProps {
   id: number;
   title: string;
   preview: string;

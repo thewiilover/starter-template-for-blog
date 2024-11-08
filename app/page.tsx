@@ -17,11 +17,11 @@ import usePageNumber from "@/src/store/pageNumberStore";
 // functions and type
 import { getListItem } from "@/src/utils/useRequest";
 import { getTotalPageNum, paginateItems } from "@/src/utils/usePagination";
-import { PostsProps } from "./types";
+import { PostProps } from "./types";
 
 export default function Home() {
   const router = useRouter();
-  const [postsList, setPostsList] = useState<PostsProps[] | null>([]);
+  const [postList, setPostList] = useState<PostProps[] | null>([]);
   const [pageNumbers, setPageNumbers] = useState<number[]>([]);
 
   const { isMobileMenuVisible } = useMenu();
@@ -35,7 +35,7 @@ export default function Home() {
     try {
       const data = await getListItem(category);
       if (data) {
-        setPostsList(paginateItems(data, itemsPerPage, currentPage));
+        setPostList(paginateItems(data, itemsPerPage, currentPage));
         setPageNumbers(getTotalPageNum(data, itemsPerPage));
       }
     } catch (error) {
@@ -44,6 +44,10 @@ export default function Home() {
   };
 
   // routing (when you click categories)
+  useEffect(() => {
+    changeCurrentPage(1);
+  }, [currentCategory]);
+
   useEffect(() => {
     changeCurrentPage(1);
     fetchList(currentCategory);
@@ -77,24 +81,24 @@ export default function Home() {
         {/* Post list */}
         <div
           className={`w-full ${
-            postsList && postsList.length > 3 ? "" : "h-[100vh]"
+            postList && postList.length > 3 ? "" : "h-[100vh]"
           } lg:w-[1024px] flex justify-between`}
         >
           <div className="w-full lg:w-[700px]">
             {/* First, html returns 'Loading' */}
             {/* After loading, if there's no result, api returns null and html returns 'No result' */}
-            {postsList && postsList.length === 0 && (
+            {postList && postList.length === 0 && (
               <div className="pb-[100px] pr-0 lg:pr-[100px] h-[100vh] flex justify-center items-center">
                 {currentCategory === "All" ? "LOADING" : "No Result"}
               </div>
             )}
-            {postsList && postsList.length > 0 && (
+            {postList && postList.length > 0 && (
               <div className="lg:w-[680px]">
-                <PostList posts={postsList} />
+                <PostList post={postList} />
               </div>
             )}
             {/* if there's nothing in the __post foler, you get this result. */}
-            {!postsList && (
+            {!postList && (
               <div className="h-[100vh] flex justify-center items-center">
                 Write your first post!
               </div>

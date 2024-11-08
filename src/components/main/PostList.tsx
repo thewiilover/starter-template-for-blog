@@ -1,13 +1,13 @@
 import Link from "next/link";
 
 // type
-import { PostsProps } from "@/app/types";
+import { PostProps } from "@/app/types";
 
-export default function PostList({ posts }: { posts: PostsProps[] }) {
+export default function PostList({ post }: { post: PostProps[] }) {
   return (
     <>
       {/* Post list in main page */}
-      {posts.map((data: PostsProps, index: number) => (
+      {post.map((data: PostProps, index: number) => (
         <Link key={index} href={`/post/${data.id}`}>
           <div className="hover:bg-blue-50 duration-150 w-full lg:h-[220px] flex flex-col justify-between pl-5 pr-12 py-5 border-b">
             <div>
