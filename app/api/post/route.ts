@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { NextRequest } from "next/server";
-import { PostsProps } from "../../types";
+import { PostsProps } from "../../../src/utils/types";
 
 const postsDirectory = "__post";
 

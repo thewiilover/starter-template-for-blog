@@ -1,12 +1,12 @@
 "use client";
 
 import useTheme from "@/src/store/themeStore";
-import { ReactNode, useEffect } from "react";
+import { ReactNode, useLayoutEffect } from "react";
 
 export default function ThemeProvider({ children }: { children: ReactNode }) {
   const { theme, changeTheme } = useTheme();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (
       !localStorage.getItem("theme") ||
       localStorage.getItem("theme") === "light"
@@ -20,8 +20,8 @@ export default function ThemeProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
-  useEffect(() => {
-    if (!theme || theme === "light") {
+  useLayoutEffect(() => {
+    if (theme === "light") {
       document.documentElement.classList.remove("dark");
     } else {
       document.documentElement.classList.add("dark");

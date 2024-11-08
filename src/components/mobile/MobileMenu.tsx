@@ -4,7 +4,8 @@ import { useEffect } from "react";
 
 // components
 import Profile from "../global/Profile";
-import Category from "../main/Category";
+import CategoryBox from "../main/content/CategoryBox";
+import CloseIcon from "../../assets/close.svg";
 
 // global value
 import useMenu from "@/src/store/menuStore";
@@ -16,12 +17,12 @@ export default function MobileMenu() {
   useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = "auto";
     };
   }, []);
 
   return (
-    <div className="z-[20] fixed flex top-0 right-0 w-full h-[100vh] pt-[65px] bg-[#00000080]">
+    <div className="z-[20] fixed flex top-0 right-0 w-full h-[100vh] bg-[#00000080]">
       {/* For closing menu when you click background */}
       <div
         onClick={() => updateIsMobileMenuVisible(false)}
@@ -29,8 +30,14 @@ export default function MobileMenu() {
       ></div>
       {/* Side menu for profile and category. The classname 'menu-open' is an animation from global.css */}
       <div className="menu-open w-[80%] h-full bg-white dark:bg-contrast-900">
+        <div
+          onClick={() => updateIsMobileMenuVisible(false)}
+          className="h-[65px] lg:hidden flex justify-end p-1 mr-3 items-center dark:bg-contrast-300 dark:rounded"
+        >
+          <CloseIcon />
+        </div>
         <Profile />
-        <Category />
+        <CategoryBox />
       </div>
     </div>
   );

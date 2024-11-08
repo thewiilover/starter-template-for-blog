@@ -1,9 +1,7 @@
 import Link from "next/link";
+import { PostProps } from "@/src/utils/types";
 
-// type
-import { PostProps } from "@/app/types";
-
-export default function PostList({ post }: { post: PostProps[] }) {
+export default function PostListItem({ post }: { post: PostProps[] }) {
   // text slice function for post preview text
   const sliceText = (text: string, maxLength: number) => {
     if (text.length <= maxLength) return text;
@@ -24,7 +22,6 @@ export default function PostList({ post }: { post: PostProps[] }) {
 
   return (
     <div className="mt-5">
-      {/* Post list in main page */}
       {post.map((data: PostProps, index: number) => (
         <Link key={index} href={`/post/${data.id}`}>
           <div className="hover:bg-primary-50 dark:hover:bg-contrast-800 duration-150 w-screen lg:w-full lg:h-[220px] flex flex-col justify-between pl-5 pr-12 py-5 border-b dark:border-b-contrast-600">

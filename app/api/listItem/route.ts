@@ -3,7 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 
 import { type NextRequest } from "next/server";
-import { ListItemProps } from "@/app/types";
+import { ListItemProps } from "@/src/utils/types";
 
 const postsDirectory = "__post";
 

@@ -1,3 +1,5 @@
+"use client";
+
 // global state management
 import useCategory from "@/src/store/categoryStore";
 

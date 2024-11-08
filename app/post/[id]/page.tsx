@@ -9,7 +9,7 @@ import MarkDownPost from "@/src/post/MarkDownPost";
 
 // function and type
 import { getPost } from "@/src/utils/useRequest";
-import { PostProps } from "@/app/types";
+import { PostProps } from "@/src/utils/types";
 import LoadingComponent from "@/src/components/global/Loading";
 
 export default function Post() {

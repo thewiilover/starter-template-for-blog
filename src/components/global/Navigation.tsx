@@ -8,7 +8,8 @@ import useMenu from "@/src/store/menuStore";
 import useCategory from "@/src/store/categoryStore";
 import usePageNumber from "@/src/store/pageNumberStore";
 
-// icon
+// components and icon
+import MobileMenu from "../mobile/MobileMenu";
 import MenuIcon from "../../assets/menu.svg";
 import CloseIcon from "../../assets/close.svg";
 
@@ -38,23 +39,19 @@ export default function Navigation() {
       </div>
       {/* For mobile screen */}
       {pathname === "/" && (
-        <div>
-          {isMobileMenuVisible ? (
-            <div
-              onClick={() => updateIsMobileMenuVisible(false)}
-              className="flex lg:hidden cursor-pointer dark:bg-contrast-300 dark:rounded p-1"
-            >
-              <CloseIcon />
-            </div>
-          ) : (
-            <div
-              onClick={() => updateIsMobileMenuVisible(true)}
-              className="flex lg:hidden cursor-pointer dark:bg-contrast-300 dark:rounded p-1"
-            >
-              <MenuIcon />
+        <>
+          {isMobileMenuVisible && (
+            <div className="flex lg:hidden">
+              <MobileMenu />
             </div>
           )}
-        </div>
+          <div
+            onClick={() => updateIsMobileMenuVisible(true)}
+            className="flex lg:hidden cursor-pointer dark:bg-contrast-300 dark:rounded p-1"
+          >
+            <MenuIcon />
+          </div>
+        </>
       )}
     </div>
   );
