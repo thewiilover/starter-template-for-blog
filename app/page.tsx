@@ -18,6 +18,7 @@ import usePageNumber from "@/src/store/pageNumberStore";
 import { getListItem } from "@/src/utils/useRequest";
 import { getTotalPageNum, paginateItems } from "@/src/utils/usePagination";
 import { PostProps } from "./types";
+import LoadingComponent from "@/src/components/global/Loading";
 
 export default function Home() {
   const router = useRouter();
@@ -103,7 +104,7 @@ export default function Home() {
             {/* After loading, if there's no result, api returns null and html returns 'No result' */}
             {postList && postList.length === 0 && (
               <div className="pb-[100px] pr-0 lg:pr-[100px] h-[100vh] flex justify-center items-center">
-                {currentCategory === "All" ? "LOADING" : "No Result"}
+                {currentCategory === "All" ? <LoadingComponent /> : "No Result"}
               </div>
             )}
             {postList && postList.length > 0 && (

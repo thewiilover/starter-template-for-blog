@@ -9,11 +9,12 @@ import MarkDownPost from "@/src/post/MarkDownPost";
 
 // function and type
 import { getPost } from "@/src/utils/useRequest";
-import { PostsProps } from "@/app/types";
+import { PostProps } from "@/app/types";
+import LoadingComponent from "@/src/components/global/Loading";
 
 export default function Post() {
   const { id } = useParams();
-  const [data, setData] = useState<PostsProps | null>(null);
+  const [data, setData] = useState<PostProps | null>(null);
 
   // fetch post content by post id
   useEffect(() => {
@@ -38,7 +39,7 @@ export default function Post() {
         </div>
       ) : (
         <div className="w-full h-[100vh] pb-[85px] flex justify-center items-center text-xl">
-          LOADING
+          <LoadingComponent />
         </div>
       )}
       {/* Profile under your post */}
