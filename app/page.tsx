@@ -38,6 +38,9 @@ export default function Home() {
       if (data) {
         setPostList(paginateItems(data, itemsPerPage, page));
         setPageNumbers(getTotalPageNum(data, itemsPerPage));
+
+        // when post list is changed, scroll moves to Top
+        // if you don't want it, remove this line
         window.scrollTo(0, 0);
       }
     } catch (error) {
@@ -84,7 +87,7 @@ export default function Home() {
     <div className="w-full">
       {/* Mobile menu when width < 1024px */}
       {isMobileMenuVisible && (
-        <div className="inline-block lg:hidden">
+        <div className="flex lg:hidden">
           <MobileMenu />
         </div>
       )}
@@ -116,7 +119,7 @@ export default function Home() {
             )}
           </div>
           {/* Side Menu on the main page, Profile and Category */}
-          <div className="z-[10] hidden lg:inline-block lg:w-[320px] h-[600px] sticky top-[80px] px-5 py-8">
+          <div className="z-[10] hidden lg:inline-block lg:w-[320px] h-[600px] sticky top-[100px] px-5 py-8">
             <div className="shadow rounded-lg p-2">
               <Profile />
             </div>

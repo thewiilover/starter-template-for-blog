@@ -22,7 +22,7 @@ export default function Navigation() {
   const { changeCurrentPage } = usePageNumber();
 
   return (
-    <div className="z-[100] fixed w-full h-[65px] flex justify-between items-center px-6 bg-white shadow-sm">
+    <div className="z-[100] fixed w-screen lg:w-full h-[65px] flex justify-between items-center pl-6 pr-8 lg:px-6 bg-white shadow-sm">
       {/* Blog title */}
       <Link
         href="/"
@@ -40,14 +40,14 @@ export default function Navigation() {
           {isMobileMenuVisible ? (
             <div
               onClick={() => updateIsMobileMenuVisible(false)}
-              className="inline-block lg:hidden cursor-pointer"
+              className="flex lg:hidden cursor-pointer"
             >
               <CloseIcon />
             </div>
           ) : (
             <div
               onClick={() => updateIsMobileMenuVisible(true)}
-              className="inline-block lg:hidden cursor-pointer"
+              className="flex lg:hidden cursor-pointer"
             >
               <MenuIcon />
             </div>
