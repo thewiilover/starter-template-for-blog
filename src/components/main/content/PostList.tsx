@@ -42,7 +42,7 @@ export default function PostList() {
   // first init when page is mounted
   useEffect(() => {
     const category = searchParam.get("category") || "All";
-    const page = Number(searchParam.get("page"));
+    const page = Number(searchParam.get("page")) || 1;
 
     fetchPostList(category, page);
     setSelectedPageNumber(page);
@@ -75,8 +75,8 @@ export default function PostList() {
       isFirstRender.current = false;
       return;
     }
-    const handlePopState = async (e: any) => {
-      const targetUrl = e.currentTarget.location.search;
+    const handlePopState = () => {
+      const targetUrl = window.location.search;
       const params = new URLSearchParams(targetUrl);
       const category = params.get("category") || "All";
       const page = Number(params.get("page")) || 1;
