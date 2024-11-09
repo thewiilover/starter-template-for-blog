@@ -1,39 +1,37 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 
 // global state management
 import useCategory from "@/src/store/categoryStore";
-import usePageNumber from "@/src/store/pageNumberStore";
 
 // functions and type
 import { getListItem } from "@/src/utils/useRequest";
-import { getTotalPageNum, paginateItems } from "@/src/utils/usePagination";
 import { PostProps } from "@/src/utils/types";
 import PostListItem from "./PostListItems";
 
 export default function PostList() {
   const router = useRouter();
-  const [postList, setPostList] = useState<PostProps[] | null>([]);
+  const searchParam = useSearchParams();
 
   const { currentCategory, changeCurrentCategory } = useCategory();
-  const { currentPage, changeCurrentPage, changeTotalPageNumbers } =
-    usePageNumber();
 
-  // if you want change item cnt per a page, change this value.
-  const itemsPerPage = 6;
+  const isFirstRender = useRef(true);
+  const [pageNumbers, setPageNumbers] = useState<number[]>([]);
+  const [postList, setPostList] = useState<PostProps[] | null>([]);
+  const [selectedPageNumber, setSelectedPageNumber] = useState<number>(1);
 
   // fetch post list
-  const fetchPostList = async (category: string, page: number) => {
+  const fetchPostList = async (
+    selectedCategory: string,
+    selectedPage: number
+  ) => {
     try {
-      const data = await getListItem(category);
+      const data = await getListItem(selectedCategory, selectedPage);
       if (data) {
-        setPostList(paginateItems(data, itemsPerPage, page));
-        changeTotalPageNumbers(getTotalPageNum(data, itemsPerPage));
-
-        // when post list is changed, scroll moves to Top
-        // if you don't want it, remove this line
+        setPostList(data.paginatedData);
+        setPageNumbers(data.totalPage);
         window.scrollTo(0, 0);
       }
     } catch (error) {
@@ -43,32 +41,47 @@ export default function PostList() {
 
   // first init when page is mounted
   useEffect(() => {
-    fetchPostList(currentCategory, currentPage);
+    const category = searchParam.get("category") || "All";
+    const page = Number(searchParam.get("page"));
+
+    fetchPostList(category, page);
+    setSelectedPageNumber(page);
   }, []);
 
   // change postList when currentCategory is changed
   useEffect(() => {
-    changeCurrentPage(1);
-    fetchPostList(currentCategory, currentPage);
-    router.push(`?category=${currentCategory}`);
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    setSelectedPageNumber(1);
+    fetchPostList(currentCategory, selectedPageNumber);
+    router.push(`?category=${currentCategory}&page=${selectedPageNumber}`);
   }, [currentCategory]);
 
   // change postList when currentPage is changed
   useEffect(() => {
-    fetchPostList(currentCategory, currentPage);
-  }, [currentPage]);
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    fetchPostList(currentCategory, selectedPageNumber);
+    router.push(`?category=${currentCategory}&page=${selectedPageNumber}`);
+  }, [selectedPageNumber]);
 
   // change postList when popstate is changed
   useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
     const handlePopState = async (e: any) => {
-      const target = e.currentTarget.location.search.split("=") || ["All"];
-      if (target.length === 1) {
-        target.push(["All"]);
-      }
-      const selectedCategory = target[target.length - 1];
-      changeCurrentPage(1);
-      changeCurrentCategory(selectedCategory);
-      fetchPostList(selectedCategory, currentPage);
+      const targetUrl = e.currentTarget.location.search;
+      const params = new URLSearchParams(targetUrl);
+      const category = params.get("category") || "All";
+      const page = Number(params.get("page")) || 1;
+      changeCurrentCategory(category);
+      fetchPostList(category, page);
     };
     window.addEventListener("popstate", handlePopState);
     return () => {
@@ -77,7 +90,7 @@ export default function PostList() {
   }, []);
 
   return (
-    <div className="">
+    <div>
       {/* First, html returns 'Loading' */}
       {/* After loading, if there's no result, api returns null and html returns 'No result' */}
       {postList && postList.length === 0 && (
@@ -90,12 +103,28 @@ export default function PostList() {
           <PostListItem post={postList} />
         </div>
       )}
-      {/* if there's nothing in the __post foler, you get this result. */}
+      {/* If there's nothing in the __post foler, you get this result. */}
       {!postList && (
         <div className="h-[100vh] flex justify-center items-center">
           Write your first post!
         </div>
       )}
+      {/* Page Number */}
+      <div className="w-full flex justify-center items-center py-[100px]">
+        {pageNumbers.map((item, index) => (
+          <button
+            key={index}
+            onClick={() => setSelectedPageNumber(item)}
+            className={`${
+              selectedPageNumber === item
+                ? "bg-primary-500 text-primary-100"
+                : ""
+            } mx-1 w-[30px] h-[30px] flex items-center justify-center text-sm text-center rounded-full`}
+          >
+            {item}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }

@@ -21,7 +21,7 @@ export default async function RootLayout({
 }>) {
   return (
     <html>
-      <body>
+      <body className="overflow-x-hidden">
         <Navigation />
         <div className="pt-[70px]">{children}</div>
         <Footer />

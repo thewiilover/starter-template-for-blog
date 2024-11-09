@@ -32,7 +32,7 @@ export default function MobileMenu() {
       <div className="menu-open w-[80%] h-full bg-white">
         <div
           onClick={() => updateIsMobileMenuVisible(false)}
-          className="h-[65px] lg:hidden flex justify-end p-1 mr-3 items-center"
+          className="h-[65px] lg:hidden flex justify-end p-1 pr-6 items-center"
         >
           <CloseIcon />
         </div>

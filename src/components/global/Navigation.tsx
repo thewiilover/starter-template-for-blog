@@ -23,7 +23,7 @@ export default function Navigation() {
   const { changeCurrentPage } = usePageNumber();
 
   return (
-    <div className="z-[100] fixed w-screen lg:w-full h-[65px] flex justify-between items-center pl-6 pr-8 lg:px-6 bg-white shadow-sm">
+    <div className="z-[100] fixed w-full lg:w-full h-[65px] flex justify-between items-center pl-6 px-6 bg-white shadow-sm">
       {/* Blog title */}
       <div className="flex items-center">
         <Link

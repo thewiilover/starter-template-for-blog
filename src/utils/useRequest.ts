@@ -1,8 +1,13 @@
 // api function for getting post data
 
-export async function getListItem(allPostsData: string) {
+export async function getListItem(
+  selectedCategory: string,
+  selectedPage: number
+) {
   const res = await fetch(
-    `http://localhost:3000/api/listItem?category=${allPostsData}`,
+    `http://localhost:3000/api/listItem?category=${selectedCategory}&page=${String(
+      selectedPage
+    )}`,
     {
       method: "GET",
       headers: {
