@@ -3,9 +3,6 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-// components
-import LoadingComponent from "../../global/Loading";
-
 // global state management
 import useCategory from "@/src/store/categoryStore";
 import usePageNumber from "@/src/store/pageNumberStore";
@@ -85,7 +82,7 @@ export default function PostList() {
       {/* After loading, if there's no result, api returns null and html returns 'No result' */}
       {postList && postList.length === 0 && (
         <div className="pb-[100px] pr-0 lg:pr-[100px] h-[100vh] flex justify-center items-center">
-          {currentCategory === "All" ? <LoadingComponent /> : "No Result"}
+          {currentCategory === "All" ? "LOADING" : "No Result"}
         </div>
       )}
       {postList && postList.length > 0 && (

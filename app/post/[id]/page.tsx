@@ -10,7 +10,6 @@ import MarkDownPost from "@/src/post/MarkDownPost";
 // function and type
 import { getPost } from "@/src/utils/useRequest";
 import { PostProps } from "@/src/utils/types";
-import LoadingComponent from "@/src/components/global/Loading";
 
 export default function Post() {
   const { id } = useParams();
@@ -39,7 +38,7 @@ export default function Post() {
         </div>
       ) : (
         <div className="w-full h-[100vh] pb-[85px] flex justify-center items-center text-xl">
-          <LoadingComponent />
+          LOADING
         </div>
       )}
       {/* Profile under your post */}
