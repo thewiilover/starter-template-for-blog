@@ -1,1 +1,1 @@
-# Next-Blog_Boilerplate
+# Next-Blog-Boilerplate
