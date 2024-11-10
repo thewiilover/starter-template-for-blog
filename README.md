@@ -1,6 +1,10 @@
-# Starter-Template-For-Blog
+![logo](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fbb4wMk%2FbtsKDOUsuTe%2FKRCocV70KE3OWPp4vlAxm0%2Fimg.png)
 
-Make your own blog site with this ready-to-use template. Everything is set up, just start posting!
+<div align="center">
+Make your own blog site with this ready-to-use template. <br /> Everything is set up, just start posting!
+</div>
+
+<br />
 
 ## 🎤 Introduction
 
