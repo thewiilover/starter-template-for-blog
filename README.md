@@ -12,7 +12,7 @@ Do you want to create your own blog site? **Starter-Template-For-Blog** provides
 
 ## 👀 Preview
 
-[Explore the Demo Site ↗️](https://starter-template-for-blog.vercel.app/?category=All&page=1)
+[Explore the Demo Site](https://starter-template-for-blog.vercel.app/?category=All&page=1)
 
 ### In Desktop
 
