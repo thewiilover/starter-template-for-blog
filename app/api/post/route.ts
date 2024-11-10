@@ -10,7 +10,8 @@ export async function GET(req: NextRequest) {
   const searchParams = req.nextUrl.searchParams;
   const selectedId = Number(searchParams.get("id"));
 
-  const fileNames = fs.readdirSync(postsDirectory);
+  const filePath = path.resolve(process.cwd(), "__post");
+  const fileNames = fs.readdirSync(filePath);
 
   const allPostsData = fileNames.map((fileName) => {
     const fullPath = path.join(postsDirectory, fileName);

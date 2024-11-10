@@ -43,7 +43,6 @@ export default function PostList() {
   useEffect(() => {
     const category = searchParam.get("category") || "All";
     const page = Number(searchParam.get("page")) || 1;
-
     fetchPostList(category, page);
     setSelectedPageNumber(page);
   }, []);

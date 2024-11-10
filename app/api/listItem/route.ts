@@ -17,7 +17,9 @@ export async function GET(req: NextRequest) {
   // if you want change item cnt per a page, change this value.
   const itemsPerPage = 6;
 
-  const fileNameList = fs.readdirSync(postsDirectory);
+  const filePath = path.resolve(process.cwd(), "__post");
+
+  const fileNameList = fs.readdirSync(filePath);
 
   const allPostsData = fileNameList.map((fileName) => {
     const fullPath = path.join(postsDirectory, fileName);
