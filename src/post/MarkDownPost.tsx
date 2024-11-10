@@ -73,15 +73,6 @@ export default function MarkDownPost({ content }: { content: string }) {
             {...props}
           ></p>
         ),
-        ul: (props: any) => (
-          <ul style={{ marginBottom: "1em" }} {...props}></ul>
-        ),
-        li: (props: any) => (
-          <div style={{ lineHeight: "2.0em" }}>
-            <span style={{ paddingRight: "0.5em" }}>•</span>
-            <span style={{ marginBottom: "0.5em" }} {...props}></span>
-          </div>
-        ),
         strong: (props: any) => (
           <span style={{ fontWeight: 700 }} {...props}></span>
         ),

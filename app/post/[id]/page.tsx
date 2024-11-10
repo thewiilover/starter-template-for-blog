@@ -27,6 +27,7 @@ export default function Post() {
     };
 
     fetchList(Number(id));
+    window.scrollTo(0, 0);
   }, []);
 
   return (
