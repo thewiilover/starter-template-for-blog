@@ -3,7 +3,6 @@ import "./globals.css";
 
 // components
 import Navigation from "../src/components/global/Navigation";
-import Footer from "../src/components/global/Footer";
 
 // your blog title
 import { blogTitle } from "@/custom/navigation";
@@ -24,7 +23,6 @@ export default async function RootLayout({
       <body className="overflow-x-hidden">
         <Navigation />
         <div className="pt-[70px]">{children}</div>
-        <Footer />
       </body>
     </html>
   );

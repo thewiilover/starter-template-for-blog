@@ -24,8 +24,9 @@ export default function MarkDownPost({ content }: { content: string }) {
         h2: (props: any) => (
           <h2
             style={{
-              fontSize: "1.36em",
+              fontSize: "2em",
               fontWeight: 500,
+              marginTop: "1.5em",
               marginBottom: "0.5em",
             }}
             {...props}
@@ -73,6 +74,23 @@ export default function MarkDownPost({ content }: { content: string }) {
             {...props}
           ></p>
         ),
+        ul: (props: any) => (
+          <div
+            style={{
+              paddingLeft: "0.5em",
+            }}
+            {...props}
+          ></div>
+        ),
+        li: (props: any) => (
+          <li
+            style={{
+              lineHeight: "1.8em",
+              marginBottom: "1em",
+            }}
+            {...props}
+          ></li>
+        ),
         strong: (props: any) => (
           <span style={{ fontWeight: 700 }} {...props}></span>
         ),
@@ -81,7 +99,8 @@ export default function MarkDownPost({ content }: { content: string }) {
             target="_blank"
             style={{
               fontStyle: "italic",
-              fontSize: "0.95em",
+              color: primary[500],
+              fontWeight: 600,
             }}
             {...props}
           />
