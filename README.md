@@ -98,4 +98,4 @@ For more detailed customization beyond what’s described, explore the `src/` fo
 
 ## 🛠️ Issue
 
-If you have any questions, need help with customization, or encountere any issues, feel free to open an issue.
+If you have any questions, need help with customization, or encounter any issues, feel free to open an issue.
