@@ -36,8 +36,6 @@ export async function GET(req: NextRequest) {
     return blogPost;
   });
 
-  if (allPostsData.length === 0) return null;
-
   if (selectedCategory === "All") {
     const result = allPostsData.sort((a, b) => b.id - a.id);
     const totalPage = getTotalPageNum(result, itemsPerPage);
