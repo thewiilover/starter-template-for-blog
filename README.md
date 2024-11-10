@@ -16,7 +16,7 @@ Do you want to create your own blog site? **Starter-Template-For-Blog** provides
 
 ### In Mobile
 
-![exampe2](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Ft2Zse%2FbtsKDesJJWj%2Fnjdok2a4LZRH0eydb08Ju1%2Fimg.png)
+![exampe2](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fbv1Vld%2FbtsKCdajshx%2FRlIlG04HAwQnwMOcw65p31%2Fimg.png)
 
 ## ✨ Features
 
