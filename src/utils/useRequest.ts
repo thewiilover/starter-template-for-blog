@@ -5,9 +5,7 @@ export async function getListItem(
   selectedPage: number
 ) {
   const res = await fetch(
-    `http://localhost:3000/api/listItem?category=${selectedCategory}&page=${String(
-      selectedPage
-    )}`,
+    `/api/listItem?category=${selectedCategory}&page=${String(selectedPage)}`,
     {
       method: "GET",
       headers: {
@@ -20,7 +18,7 @@ export async function getListItem(
 }
 
 export async function getPost(id: number) {
-  const res = await fetch(`http://localhost:3000/api/post?id=${id}`, {
+  const res = await fetch(`/api/post?id=${id}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
