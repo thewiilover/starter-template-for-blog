@@ -4,9 +4,8 @@ import matter from "gray-matter";
 import { NextRequest } from "next/server";
 import { PostProps } from "../../../src/utils/types";
 
-const postsDirectory = "__post";
-
 export async function GET(req: NextRequest) {
+  const postsDirectory = "__post";
   const searchParams = req.nextUrl.searchParams;
   const selectedId = Number(searchParams.get("id"));
 

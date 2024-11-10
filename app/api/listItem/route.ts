@@ -6,11 +6,9 @@ import { type NextRequest } from "next/server";
 import { ListItemProps } from "@/src/utils/types";
 import { getTotalPageNum, paginateItems } from "@/src/utils/usePagination";
 
-const postsDirectory = "__post";
-
 export async function GET(req: NextRequest) {
+  const postsDirectory = "__post";
   const searchParams = req.nextUrl.searchParams;
-
   const selectedCategory = searchParams.get("category");
   const selectedPage = searchParams.get("page");
 
@@ -18,7 +16,6 @@ export async function GET(req: NextRequest) {
   const itemsPerPage = 6;
 
   const filePath = path.resolve(process.cwd(), "__post");
-
   const fileNameList = fs.readdirSync(filePath);
 
   const allPostsData = fileNameList.map((fileName) => {
